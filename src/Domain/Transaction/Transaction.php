@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Transaction;
 
-use App\Domain\Side\SideCollection;
+use App\Domain\Side\SideRepository;
 use App\Domain\Terms\Terms;
 use JsonSerializable;
 
@@ -14,9 +16,9 @@ class Transaction implements JsonSerializable
 {
     /**
      * Стороны
-     * @var SideCollection
+     * @var SideRepository
      */
-    private SideCollection $sides;
+    private SideRepository $sides;
 
     /**
      * Условаия
@@ -24,7 +26,7 @@ class Transaction implements JsonSerializable
      */
     private Terms $terms;
 
-    public function __construct(SideCollection $sides, Terms $terms)
+    public function __construct(SideRepository $sides, Terms $terms)
     {
         $this->sides = $sides;
         $this->terms = $terms;
@@ -38,8 +40,16 @@ class Transaction implements JsonSerializable
         ];
     }
 
-    public function getSides(): SideCollection
+    public function getSides(): SideRepository
     {
         return $this->sides;
+    }
+
+    /**
+     * @return Terms
+     */
+    public function getTerms(): Terms
+    {
+        return $this->terms;
     }
 }
