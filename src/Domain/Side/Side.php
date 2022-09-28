@@ -9,17 +9,11 @@ use JsonSerializable;
 
 class Side implements JsonSerializable
 {
-    private ?int $id;
-
-    private User $user;
-
-    private bool $is_person;
-
-    public function __construct(?int $id, User $user, bool $is_person)
-    {
-        $this->id = $id;
-        $this->user = $user;
-        $this->is_person = $is_person;
+    public function __construct(
+        private readonly ?int $id,
+        private readonly User $user,
+        private readonly bool $is_person
+    ) {
     }
 
     public function jsonSerialize(): array
