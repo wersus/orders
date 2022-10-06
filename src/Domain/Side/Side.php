@@ -19,9 +19,9 @@ class Side implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            $this->id,
-            $this->user,
-            $this->is_person,
+            "id" => $this->id,
+            "user" => $this->user,
+            "is_person" => $this->is_person,
         ];
     }
 

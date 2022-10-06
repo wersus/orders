@@ -2,24 +2,28 @@
 
 namespace App\Domain\Terms;
 
+use JsonSerializable;
+
 /**
  * Условия сделки
  * Terms of transaction
  *
- * @todo make type of condition
  */
-class Terms
+class Terms implements JsonSerializable
 {
-    public function __construct($condition)
+    public function __construct(private readonly ConditionInterface $condition)
     {
-        $this->condition = $condition;
     }
 
-    private $condition;
-
-    public function getCondition()
+    public function getCondition(): ConditionInterface
     {
         return $this->condition;
     }
 
+    public function jsonSerialize(): array
+    {
+        return [
+            "termCondition" => $this->condition,
+        ];
+    }
 }

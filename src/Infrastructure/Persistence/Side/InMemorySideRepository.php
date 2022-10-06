@@ -8,11 +8,9 @@ use App\Domain\Side\Side;
 use App\Domain\Side\SideNotFoundException;
 use App\Domain\Side\SideRepository;
 use App\Domain\User\User;
-use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class InMemorySideRepository implements SideRepository
 {
-
     /**
      * @var Side[]
      */
