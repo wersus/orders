@@ -6,6 +6,7 @@ namespace App\Domain\Transaction;
 
 use App\Domain\Side\Side;
 use App\Domain\Terms\Terms;
+use App\Domain\Uuid\Uuid;
 use JsonSerializable;
 
 /**
@@ -15,6 +16,7 @@ use JsonSerializable;
 class Transaction implements JsonSerializable
 {
     public function __construct(
+        private readonly Uuid $uuid,
         private readonly Side $sideForm,
         private readonly Side $sideTo,
         private readonly Terms $terms
@@ -24,9 +26,10 @@ class Transaction implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            $this->sideForm,
-            $this->sideTo,
-            $this->terms,
+            "uuid" => $this->uuid,
+            "sideFrom" => $this->sideForm,
+            "sideTo" => $this->sideTo,
+            "terms" => $this->terms,
         ];
     }
 
@@ -43,5 +46,10 @@ class Transaction implements JsonSerializable
     public function getSideTo(): Side
     {
         return $this->sideTo;
+    }
+
+    public function getUuid(): Uuid
+    {
+        return $this->uuid;
     }
 }

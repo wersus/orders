@@ -9,6 +9,7 @@ use App\Domain\Transaction\Transaction;
 use App\Domain\Transaction\TransactionNotFoundException;
 use App\Domain\Transaction\TransactionRepository;
 use App\Domain\User\User;
+use App\Domain\Uuid\Uuid;
 
 class InMemoryTransactionRepository implements TransactionRepository
 {
@@ -18,6 +19,7 @@ class InMemoryTransactionRepository implements TransactionRepository
     {
         $this->transactions = $transactions ?? [
             1 => new Transaction(
+                new Uuid(\Ramsey\Uuid\Uuid::fromInteger(3948539481)),
                 new Side(1, new User(1, 'bill.gates', 'Bill', 'Gates'), true),
                 new Side(1, new User(2, 'steve.jobs', 'Steve', 'Jobs'), true),
                 new Terms(new BoolCondition(true)),
