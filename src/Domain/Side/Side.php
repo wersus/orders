@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Side;
 
+use App\Domain\Domain\DomainInterface;
 use App\Domain\User\User;
 use JsonSerializable;
 
-class Side implements JsonSerializable
+class Side implements JsonSerializable, DomainInterface
 {
     public function __construct(
         private readonly ?int $id,

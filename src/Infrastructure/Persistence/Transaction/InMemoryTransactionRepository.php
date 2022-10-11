@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Persistence\Transaction;
 
 use App\Domain\Side\Side;
@@ -17,9 +19,14 @@ class InMemoryTransactionRepository implements TransactionRepository
 
     public function __construct(array $transactions = null)
     {
-        $this->transactions = $transactions ?? [
+        $this->transactions = $transactions ?? self::default();
+    }
+
+    public static function default()
+    {
+        return [
             1 => new Transaction(
-                new Uuid(\Ramsey\Uuid\Uuid::fromInteger(3948539481)),
+                new Uuid(\Ramsey\Uuid\Uuid::fromInteger('3948539481')),
                 new Side(1, new User(1, 'bill.gates', 'Bill', 'Gates'), true),
                 new Side(1, new User(2, 'steve.jobs', 'Steve', 'Jobs'), true),
                 new Terms(new BoolCondition(true)),
