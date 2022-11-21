@@ -19,11 +19,11 @@ class InMemorySideRepository implements SideRepository, DomainRepositoryInterfac
     public static function default(): array
     {
         return [
-            self::one(),
-            new Side(2, new User(2, 'steve.jobs', 'Steve', 'Jobs'), true),
-            new Side(3, new User(3, 'mark.zuckerberg', 'Mark', 'Zuckerberg'), true),
-            new Side(4, new User(4, 'evan.spiegel', 'Evan', 'Spiegel'), true),
-            new Side(5, new User(5, 'jack.dorsey', 'Jack', 'Dorsey'), true),
+            1 => self::one(),
+            2 => new Side(2, new User(2, 'steve.jobs', 'Steve', 'Jobs'), true),
+            3 => new Side(3, new User(3, 'mark.zuckerberg', 'Mark', 'Zuckerberg'), true),
+            4 => new Side(4, new User(4, 'evan.spiegel', 'Evan', 'Spiegel'), true),
+            5 => new Side(5, new User(5, 'jack.dorsey', 'Jack', 'Dorsey'), true),
         ];
     }
 
@@ -34,7 +34,7 @@ class InMemorySideRepository implements SideRepository, DomainRepositoryInterfac
 
     public function __construct(array $sides = null)
     {
-        $this->sides = $sides ?? [self::default()];
+        $this->sides = $sides ?? self::default();
     }
 
     public function findAll(): array
